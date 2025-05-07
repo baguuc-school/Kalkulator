@@ -16,8 +16,6 @@ public class Operation : INotifyPropertyChanged
 		get => expression;
 		set {
             expression = value;
-            // odswiez wartosc operacji
-            this.RawValue = null;
 			OnPropertyChanged();
         }
 	}
@@ -55,7 +53,6 @@ public class Operation : INotifyPropertyChanged
                 this.rawValue = null;
             }
 
-            this.Value = "";
             OnPropertyChanged();
         }
 	}
@@ -64,6 +61,7 @@ public class Operation : INotifyPropertyChanged
 	{
         get => value;
         set {
+            this.RawValue = null;
             this.value = RawValue == null ? "B³¹d sk³adni!" : RawValue.ToString();
             OnPropertyChanged();
         }
