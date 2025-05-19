@@ -8,69 +8,60 @@ namespace Kalkulator.Models;
 public class Operation : INotifyPropertyChanged
 {
 	private string expression;
-    private float? rawValue;
-    private string value;
 
 	public string Expression
 	{
 		get => expression;
 		set {
             expression = value;
-			OnPropertyChanged();
-        }
-	}
-
-	private float? RawValue
-    {
-		get => rawValue;
-        set
-        {
-            try
-            {
-                DataTable dt = new DataTable();
-                object v = dt.Compute(Expression, "");
-
-                if (v == DBNull.Value)
-                {
-                    this.rawValue = null;
-                }
-
-                if (v is int)
-                {
-                    this.rawValue = (float)(int)v;
-                }
-                else if (v is float)
-                {
-                    this.rawValue = (float)v;
-                }
-                else if (v is double)
-                {
-                    this.rawValue = (float)(double)v;
-                }
-            }
-            catch (SyntaxErrorException)
-            {
-                this.rawValue = null;
-            }
-
-            OnPropertyChanged();
-        }
-	}
-
-	public string Value
-	{
-        get => value;
-        set {
-            this.RawValue = null;
-            this.value = RawValue == null ? "B³¹d sk³adni!" : RawValue.ToString();
-            OnPropertyChanged();
+			OnPropertyChanged(nameof(Expression));
         }
 	}
 
 	public Operation(string expression)
 	{
-		this.Expression = expression;
+		this.expression = expression;
 	}
+
+    public void Clear()
+    {
+        this.expression = "";
+        OnPropertyChanged(nameof(Expression));
+    }
+
+    public void Calculate()
+    {
+        try
+        {
+            if(expression.Contains("/0"))
+            {
+                // u¿ytkownik chce podzieliæ przez zero
+                throw new DivideByZeroException();
+            }
+
+            DataTable dt = new DataTable();
+            object v = dt.Compute(expression, "");
+
+            if (v == DBNull.Value || v == null)
+            {
+                this.expression = "Pusta wartoœæ";
+            }
+            else
+            {
+                this.expression = v.ToString();
+            }
+        }
+        catch (SyntaxErrorException)
+        {
+            this.expression = "B³¹d sk³adni";
+        }
+        catch(DivideByZeroException)
+        {
+            this.expression = "Podzia³ przez 0";
+        }
+        
+        OnPropertyChanged(nameof(Expression));
+    }
 
     public event PropertyChangedEventHandler? PropertyChanged;
 

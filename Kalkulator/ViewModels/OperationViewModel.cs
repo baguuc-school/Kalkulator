@@ -48,8 +48,11 @@ public class OperationViewModel
 
         this.CalculateCommand = new Command(() =>
         {
-            this.Operation.Value = "";
+            this.Operation.Calculate();
         });
-        this.ClearCommand = new Command(() => this.Operation.Expression = "");
+        this.ClearCommand = new Command(() =>
+        {
+            this.Operation.Clear();
+        });
     }
 }
