@@ -3,27 +3,37 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Kalkulator.Views.MainPage"
              Title="MainPage">
-    <VerticalStackLayout>
-        <Label Text="{Binding Operation.Expression}"/>
-        <Label Text="{Binding Operation.Value}" />
+    <StackLayout>
+        <VerticalStackLayout Spacing="2" VerticalOptions="Center" HorizontalOptions="Center"  BackgroundColor="#000000">
+            <Label Text="{Binding Operation.Expression}" FontSize="30" />
 
-        <Button Text="0" WidthRequest="25" HeightRequest="25" Command="{Binding Add0Command}" />
-        <Button Text="1" WidthRequest="25" HeightRequest="25" Command="{Binding Add1Command}" />
-        <Button Text="2" WidthRequest="25" HeightRequest="25" Command="{Binding Add2Command}" />
-        <Button Text="3" WidthRequest="25" HeightRequest="25" Command="{Binding Add3Command}" />
-        <Button Text="4" WidthRequest="25" HeightRequest="25" Command="{Binding Add4Command}" />
-        <Button Text="5" WidthRequest="25" HeightRequest="25" Command="{Binding Add5Command}" />
-        <Button Text="6" WidthRequest="25" HeightRequest="25" Command="{Binding Add6Command}" />
-        <Button Text="7" WidthRequest="25" HeightRequest="25" Command="{Binding Add7Command}" />
-        <Button Text="8" WidthRequest="25" HeightRequest="25" Command="{Binding Add8Command}" />
-        <Button Text="9" WidthRequest="25" HeightRequest="25" Command="{Binding Add9Command}" />
+            <HorizontalStackLayout Spacing="2">
+                <Button Text="1" WidthRequest="25" HeightRequest="25" Command="{Binding Add1Command}" />
+                <Button Text="2" WidthRequest="25" HeightRequest="25" Command="{Binding Add2Command}" />
+                <Button Text="3" WidthRequest="25" HeightRequest="25" Command="{Binding Add3Command}" />
+                <Button Text="+" WidthRequest="25" HeightRequest="25" Command="{Binding AddAdditionCommand}" />
+            </HorizontalStackLayout>
 
-        <Button Text="+" WidthRequest="25" HeightRequest="25" Command="{Binding AddAdditionCommand}" />
-        <Button Text="-" WidthRequest="25" HeightRequest="25" Command="{Binding AddSubtractionCommand}" />
-        <Button Text="*" WidthRequest="25" HeightRequest="25" Command="{Binding AddMultiplicationCommand}" />
-        <Button Text="/" WidthRequest="25" HeightRequest="25" Command="{Binding AddDivisionCommand}" />
+            <HorizontalStackLayout Spacing="2">
+                <Button Text="4" WidthRequest="25" HeightRequest="25" Command="{Binding Add4Command}" />
+                <Button Text="5" WidthRequest="25" HeightRequest="25" Command="{Binding Add5Command}" />
+                <Button Text="6" WidthRequest="25" HeightRequest="25" Command="{Binding Add6Command}" />
+                <Button Text="-" WidthRequest="25" HeightRequest="25" Command="{Binding AddSubtractionCommand}" />
+            </HorizontalStackLayout>
 
-        <Button Text="C" WidthRequest="25" HeightRequest="25" Command="{Binding ClearCommand}" />
-        <Button Text="=" WidthRequest="25" HeightRequest="25" Command="{Binding CalculateCommand}" />
-    </VerticalStackLayout>
+            <HorizontalStackLayout Spacing="2">
+                <Button Text="7" WidthRequest="25" HeightRequest="25" Command="{Binding Add7Command}" />
+                <Button Text="8" WidthRequest="25" HeightRequest="25" Command="{Binding Add8Command}" />
+                <Button Text="9" WidthRequest="25" HeightRequest="25" Command="{Binding Add9Command}" />
+                <Button Text="*" WidthRequest="25" HeightRequest="25" Command="{Binding AddMultiplicationCommand}" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Spacing="2">
+                <Button Text="C" WidthRequest="25" HeightRequest="25" Command="{Binding ClearCommand}" />
+                <Button Text="0" WidthRequest="25" HeightRequest="25" Command="{Binding Add0Command}" />
+                <Button Text="=" WidthRequest="25" HeightRequest="25" Command="{Binding CalculateCommand}" />
+                <Button Text="/" WidthRequest="25" HeightRequest="25" Command="{Binding AddDivisionCommand}" />
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </StackLayout>
 </ContentPage>
